@@ -35,16 +35,14 @@ rabbitmq:
 client:
   services:
     song:
-      discoveryName: ${SONG_SERVICE_NAME}
-      endpoint: /api/v1/songs
+      endpoint: http://${SONG_SERVICE_NAME}/api/v1/songs
     resource:
-      discoveryName: ${RESOURCE_SERVICE_NAME}
-      endpoint: /api/v1/resources/{resourceId}
+      endpoint: http://${RESOURCE_SERVICE_NAME}/api/v1/resources/{resourceId}
 
 eureka:
   client:
     service-url:
-      defaultZone: ${EUREKA_REGISTRY_URI:http://localhost:8766/eureka}
+      defaultZone: ${EUREKA_REGISTRY_URI:http://localhost:8761/eureka}
 
 
 management.endpoints.web.exposure.include: '*'

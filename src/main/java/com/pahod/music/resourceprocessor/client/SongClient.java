@@ -2,6 +2,7 @@ package com.pahod.music.resourceprocessor.client;
 
 import org.apache.tika.metadata.Metadata;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.cloud.client.loadbalancer.reactive.ReactorLoadBalancerExchangeFilterFunction;
 import org.springframework.http.MediaType;
 import org.springframework.stereotype.Service;
 import org.springframework.web.reactive.function.client.WebClient;
@@ -9,16 +10,15 @@ import org.springframework.web.reactive.function.client.WebClient;
 @Service
 public class SongClient {
 
-  public static final String LOAD_BALANCER_PREFIX = "lb://";
   private final String songsApiURI;
   private final WebClient webClient;
 
   public SongClient(
       @Value("${client.services.song.endpoint}") String songsApiURI,
-      @Value("${client.services.song.discoveryName}") String discoveryName,
-      WebClient.Builder webClientBuilder) {
+      WebClient.Builder webClientBuilder,
+      ReactorLoadBalancerExchangeFilterFunction filterFunction) {
     this.songsApiURI = songsApiURI;
-    this.webClient = webClientBuilder.baseUrl(LOAD_BALANCER_PREFIX + discoveryName).build();
+    this.webClient = webClientBuilder.filter(filterFunction).build();
   }
 
   public void saveMetadata(Metadata metadata, Integer audioResourceId) {
