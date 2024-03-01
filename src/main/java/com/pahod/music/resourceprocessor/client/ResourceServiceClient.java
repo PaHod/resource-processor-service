@@ -8,16 +8,17 @@ import org.springframework.web.reactive.function.client.WebClient;
 
 @Service
 public class ResourceServiceClient {
+  public static final String LOAD_BALANCER_PREFIX = "lb://";
 
   private final String apiURI;
   private final WebClient webClient;
 
   public ResourceServiceClient(
       @Value("${client.services.resource.endpoint}") String apiURI,
-      @Value("${client.services.resource.url}") String baseUrl,
+      @Value("${client.services.resource.discoveryName}") String discoveryName,
       WebClient.Builder webClientBuilder) {
     this.apiURI = apiURI;
-    this.webClient = webClientBuilder.baseUrl(baseUrl).build();
+    this.webClient = webClientBuilder.baseUrl(LOAD_BALANCER_PREFIX + discoveryName).build();
   }
 
   public MultipartFile fetchAudioFile(Integer resourceId) {

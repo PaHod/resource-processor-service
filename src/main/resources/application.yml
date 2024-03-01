@@ -18,11 +18,28 @@ spring:
     multipart:
       max-file-size: 10MB
       max-request-size: 10MB
+  rabbitmq:
+    ssl:
+      enabled: true
+    host: ${RABBITMQ_HOST}
+    port: ${RABBITMQ_PORT}
+    username: ${RABBITMQ_USERNAME}
+    password: ${RABBITMQ_PASSWORD}
 
-client.services:
-  song:
-    endpoint: /api/v1/songs
-    url: ${SONG_SERVICE_HOST}
-  resource:
-    endpoint: /api/v1/resources/{resourceId}
-    url: ${RESOURCE_SERVICE_HOST}
+rabbitmq:
+  queue:
+    name: music_queue
+
+client:
+  services:
+    song:
+      discoveryName: ${SONG_SERVICE_NAME}
+      endpoint: /api/v1/songs
+    resource:
+      discoveryName: ${RESOURCE_SERVICE_NAME}
+      endpoint: /api/v1/resources/{resourceId}
+
+eureka:
+  client:
+    service-url:
+      defaultZone: ${EUREKA_REGISTRY_URI:http://localhost:8761/eureka}

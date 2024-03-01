@@ -1,13 +1,8 @@
 <component name="ProjectRunConfigurationManager">
-  <configuration default="false" name="ResourceServiceApplication" type="Application" factoryName="Application" nameIsGenerated="true">
-    <option name="MAIN_CLASS_NAME" value="com.pahod.music.resourceprocessor.ResourceProcessorApplication" />
-    <module name="resource-service.main" />
-    <extension name="coverage">
-      <pattern>
-        <option name="PATTERN" value="com.pahod.music.resourceprocessor.*" />
-        <option name="ENABLED" value="true" />
-      </pattern>
-    </extension>
+  <configuration default="false" name="ResourceProcessorApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" nameIsGenerated="true">
+    <option name="FRAME_DEACTIVATION_UPDATE_POLICY" value="UpdateClassesAndResources" />
+    <module name="resource-processor-service.main" />
+    <option name="SPRING_BOOT_MAIN_CLASS" value="com.pahod.music.resourceprocessor.ResourceProcessorApplication" />
     <extension name="net.ashald.envfile">
       <option name="IS_ENABLED" value="true" />
       <option name="IS_SUBST" value="false" />
