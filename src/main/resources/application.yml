@@ -2,6 +2,8 @@ server:
   port: ${RESOURCE_PROCESSOR_SERVICE_PORT}
 
 spring:
+  codec:
+    max-in-memory-size: 10MB
   application:
     name: ${PROCESSOR_SERVICE_NAME}
   datasource:
@@ -14,12 +16,6 @@ spring:
 
   liquibase:
     change-log: classpath:db/changelog/db.changelog-master.xml
-  hibernate:
-    ddl-auto: create
-  servlet:
-    multipart:
-      max-file-size: 10MB
-      max-request-size: 10MB
   rabbitmq:
     ssl:
       enabled: true
