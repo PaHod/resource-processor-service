@@ -41,6 +41,7 @@ public class ResourceService {
 
     Metadata metadata = parseMetadata(byteArray);
     songClient.saveMetadata(metadata, resourceId);
+    resourceServiceClient.notifyFileProcessed(resourceId);
   }
 
   private static Metadata parseMetadata(byte[] fileData) {

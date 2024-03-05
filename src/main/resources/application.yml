@@ -34,8 +34,9 @@ client:
 #      endpoint: http://${SONG_SERVICE_NAME}/api/v1/songs
       endpoint: http://${API_GATEWAY_NAME}/api/v1/songs
     resource:
-#      endpoint: http://${RESOURCE_SERVICE_NAME}/api/v1/resources/{resourceId}
-      endpoint: http://${API_GATEWAY_NAME}/api/v1/resources/{resourceId}
+      host: http://${API_GATEWAY_NAME}
+      endpoint-get-resource: /api/v1/resources/{resourceId}
+      endpoint-notify-processed: /api/v1/resources/resource-processed/{resourceId}
 
 eureka:
   client:
